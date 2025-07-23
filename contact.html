@@ -19,10 +19,11 @@
 </nav>
 <main>
   <h2>Order / Estimate Request</h2>
-  <form action="https://formsubmit.co/test@formsubmit.co" method="POST">
-
+  <form id="orderForm" action="https://formsubmit.co/zachschur@gmail.com" method="POST" oninput="updateTotal()">
     <input type="hidden" name="_subject" value="LY Order Form Submission">
     <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="https://ly-distributors-success.netlify.app/">
+
     <label>Name</label>
     <input type="text" name="name" required>
     <label>Email</label>
@@ -60,7 +61,6 @@
     <label>Additional Notes</label>
     <textarea name="notes" rows="4"></textarea>
 
-    <input type="hidden" name="_template" value="table">
     <input type="hidden" name="_autoresponse" value="Thank you for your order request! We'll be in touch shortly.">
 
     <div class="total-section">Estimated Total: $<span id="totalPrice">0.00</span></div>
