@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lamb - LY Distributors</title>
+  <style>
+    body{font-family:Arial,sans-serif;background:#f6f9f4;margin:0;padding:0}
+    header{background:#4d7754;color:#fff;padding:1rem;text-align:center}
+    nav{background:#6a8f6d;display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem;padding:.75rem}
+    nav a{color:#fff;text-decoration:none;font-weight:bold;font-size:.95rem}
+    main{padding:1rem}
+    h2{text-align:center}
+    .product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem}
+    @media(min-width:768px){.product-grid{grid-template-columns:repeat(3,1fr)}}
+    @media(min-width:1200px){.product-grid{grid-template-columns:repeat(6,1fr)}}
+    .product{background:#fff;border-radius:8px;padding:.75rem;padding-bottom:1.25rem;text-align:center;box-shadow:0 2px 4px rgba(0,0,0,.1);display:flex;flex-direction:column;align-items:center;justify-content:flex-start}
+    .product img{display:block;margin:0 auto .25rem auto;width:auto;max-width:100%;max-height:160px;border-radius:4px;object-fit:contain;aspect-ratio:1/1}
+    .product-info{font-size:1.1rem}
+    .product-info strong{display:block;font-size:1.2rem;font-weight:700;margin-bottom:.2rem}
+  </style>
+</head>
+<body>
+<header><h1>LY Distributors</h1></header>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="beef.html">Beef</a>
+  <a href="chicken.html">Chicken</a>
+  <a href="veal.html">Veal</a>
+  <a href="lamb.html">Lamb</a>
+  <a href="turkey.html">Turkey</a>
+  <a href="contact.html">Contact Us</a>
+</nav>
+<main>
+  <h2>Kosher Lamb Cuts</h2>
+  <div class="product-grid">
+    <script>
+      const products = [
+        ["Whole Shoulder", 9.99, "https://wassermansupermarket.com/api/content/images/thumbs/0092488_lamb-shoulder-chops.jpeg"],
+        ["Whole Lamb with baby lamb chops / Steaks", 15.99, "https://wassermansupermarket.com/api/content/images/thumbs/0092488_lamb-shoulder-chops.jpeg"],
+        ["Steaks", 14.49, "https://wassermansupermarket.com/api/content/images/thumbs/0092488_lamb-shoulder-chops.jpeg"],
+        ["Neck & Shin", 9.99, "https://wassermansupermarket.com/api/content/images/thumbs/0092488_lamb-shoulder-chops.jpeg"],
+        ["Lamb Fat", 5.00, "https://wassermansupermarket.com/api/content/images/thumbs/0092488_lamb-shoulder-chops.jpeg"],
+        ["Ground Lamb", 14.99, "https://wassermansupermarket.com/api/content/images/thumbs/0092488_lamb-shoulder-chops.jpeg"],
+        ["Rezegi Lamb", 16.99, "https://wassermansupermarket.com/api/content/images/thumbs/0092488_lamb-shoulder-chops.jpeg"],
+        ["Shank Bones", 12.99, "https://wassermansupermarket.com/api/content/images/thumbs/0092488_lamb-shoulder-chops.jpeg"]
+      ];
+      window.addEventListener('DOMContentLoaded', () => {
+        const c = document.querySelector('.product-grid');
+        products.forEach(([n, p, i]) => {
+          const d = document.createElement('div');
+          d.className = 'product';
+          d.innerHTML = `<img src="${i}" alt="${n}"><div class='product-info'><strong>${n}</strong>$${p.toFixed(2)}/lb</div>`;
+          c.appendChild(d);
+        });
+      });
+    </script>
+  </div>
+</main>
+</body>
+</html>

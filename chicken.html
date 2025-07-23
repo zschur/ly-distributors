@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chicken - LY Distributors</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f6f9f4;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #4d7754;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav {
+      background-color: #6a8f6d;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 0.75rem;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+    main {
+      padding: 1rem;
+    }
+    h2 {
+      text-align: center;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+    }
+    @media (min-width: 768px) {
+      .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    @media (min-width: 1200px) {
+      .product-grid {
+        grid-template-columns: repeat(6, 1fr);
+      }
+    }
+    .product {
+      background-color: white;
+      border-radius: 8px;
+      padding: 0.75rem;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-bottom: 1.25rem;
+    }
+    .product img {
+      display: block;
+      margin: 0 auto 0.25rem auto;
+      width: auto;
+      max-width: 100%;
+      max-height: 160px;
+      border-radius: 4px;
+      object-fit: contain;
+      aspect-ratio: 1/1;
+    }
+    .product-info {
+      font-size: 1.1rem;
+    }
+    .product-info strong {
+      display: block;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>LY Distributors</h1>
+  </header>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="beef.html">Beef</a>
+    <a href="chicken.html">Chicken</a>
+    <a href="veal.html">Veal</a>
+    <a href="lamb.html">Lamb</a>
+    <a href="turkey.html">Turkey</a>
+    <a href="contact.html">Contact Us</a>
+  </nav>
+  <main>
+    <h2>Kosher Chicken Cuts</h2>
+    <div class="product-grid">
+      <script>
+        const products = [
+          ["Whole 2/5", 4.99, "https://wassermansupermarket.com/api/content/images/thumbs/0176710_chicken-bottoms-kj.jpeg"],
+          ["Whole 3lb or bigger", 4.29, "https://wassermansupermarket.com/api/content/images/thumbs/0176710_chicken-bottoms-kj.jpeg"],
+          ["Cornish (2 for $24)", 12.00, "https://wassermansupermarket.com/api/content/images/thumbs/0176710_chicken-bottoms-kj.jpeg"],
+          ["Legs Family", 3.79, "https://wassermansupermarket.com/api/content/images/thumbs/0176710_chicken-bottoms-kj.jpeg"],
+          ["Legs Mesorah", 4.99, "https://wassermansupermarket.com/api/content/images/thumbs/0176710_chicken-bottoms-kj.jpeg"],
+          ["Thighs", 4.99, "https://wassermansupermarket.com/api/content/images/thumbs/0176710_chicken-bottoms-kj.jpeg"],
+          ["Drums", 3.99, "https://wassermansupermarket.com/api/content/images/thumbs/0176710_chicken-bottoms-kj.jpeg"],
+          ["Wings", 3.49, "https://wassermansupermarket.com/api/content/images/thumbs/0176710_chicken-bottoms-kj.jpeg"],
+          ["Jumbo Wings", 4.49, "https://wassermansupermarket.com/api/content/images/thumbs/0176710_chicken-bottoms-kj.jpeg"],
+          ["Cutlet Family", 7.99, "https://wassermansupermarket.com/api/content/images/thumbs/0176710_chicken-bottoms-kj.jpeg"],
+          ["Cutlet Small Package", 8.49, "https://wassermansupermarket.com/api/content/images/thumbs/0176710_chicken-bottoms-kj.jpeg"],
+          ["Pargiot Family Baby chicken thighs boneless", 7.99, "https://wassermansupermarket.com/api/content/images/thumbs/0176710_chicken-bottoms-kj.jpeg"],
+          ["Pargiot Small Package", 8.49, "https://wassermansupermarket.com/api/content/images/thumbs/0176710_chicken-bottoms-kj.jpeg"],
+          ["Liver", 6.99, "https://wassermansupermarket.com/api/content/images/thumbs/0176710_chicken-bottoms-kj.jpeg"],
+          ["Bones", 2.99, "https://wassermansupermarket.com/api/content/images/thumbs/0176710_chicken-bottoms-kj.jpeg"],
+          ["Tenders Thin Sliced", 10.99, "https://wassermansupermarket.com/api/content/images/thumbs/0176710_chicken-bottoms-kj.jpeg"],
+          ["Fingers", 11.49, "https://wassermansupermarket.com/api/content/images/thumbs/0176710_chicken-bottoms-kj.jpeg"],
+          ["Neck", 5.49, "https://wassermansupermarket.com/api/content/images/thumbs/0176710_chicken-bottoms-kj.jpeg"],
+          ["Ground", 7.49, "https://wassermansupermarket.com/api/content/images/thumbs/0176710_chicken-bottoms-kj.jpeg"],
+          ["Cubed to tiny pieces Chicken", 13.99, "https://wassermansupermarket.com/api/content/images/thumbs/0176710_chicken-bottoms-kj.jpeg"]
+        ];
+        document.addEventListener("DOMContentLoaded", () => {
+          const container = document.querySelector(".product-grid");
+          products.forEach(([name, price, image]) => {
+            const div = document.createElement("div");
+            div.className = "product";
+            div.innerHTML = `
+              <img src="${image}" alt="${name}" />
+              <div class="product-info">
+                <strong>${name}</strong>
+                $${price.toFixed(2)}/lb
+              </div>
+            `;
+            container.appendChild(div);
+          });
+        });
+      </script>
+    </div>
+  </main>
+</body>
+</html>

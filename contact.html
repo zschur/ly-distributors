@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - LY Distributors</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f6f9f4; margin: 0; padding: 0; }
+    header { background-color: #4d7754; color: white; padding: 1rem; text-align: center; }
+    nav { background-color: #6a8f6d; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; padding: 0.75rem; }
+    nav a { color: white; text-decoration: none; font-weight: bold; font-size: 0.95rem; }
+    main { padding: 2rem 1rem; max-width: 900px; margin: auto; }
+    h2 { text-align: center; margin-bottom: 1.5rem; }
+    form { display: flex; flex-direction: column; gap: 1rem; }
+    label { font-weight: bold; display: block; margin-bottom: 0.4rem; }
+    input, select, textarea { padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; width: 100%; box-sizing: border-box; }
+    .order-row, .order-inputs { display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-end; margin-bottom: 1rem; }
+    .order-row > div, .order-inputs > div { flex: 1 1 150px; min-width: 140px; }
+    .price-display { font-weight: bold; padding: 0.5rem 0; min-width: 100px; }
+    .total-section { text-align: right; font-size: 1.2rem; font-weight: bold; margin-top: 1rem; }
+    button { background-color: #4d7754; color: white; border: none; padding: 0.75rem; border-radius: 4px; font-size: 1rem; cursor: pointer; }
+    button:hover { background-color: #3c5e42; }
+    .remove-btn { background-color: transparent; color: #d00; border: none; font-weight: bold; cursor: pointer; margin-left: 0.5rem; }
+    .order-row input[type="number"] { max-width: 80px; }
+    .order-inputs > div button { margin-left: 1rem; margin-top: 1.6rem; }
+    .order-inputs select, .order-inputs input[type="number"] { height: 39px; }
+  </style>
+</head>
+<body>
+<header><h1>LY Distributors</h1></header>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="beef.html">Beef</a>
+  <a href="chicken.html">Chicken</a>
+  <a href="veal.html">Veal</a>
+  <a href="lamb.html">Lamb</a>
+  <a href="turkey.html">Turkey</a>
+  <a href="contact.html">Contact Us</a>
+</nav>
+<main>
+  <h2>Order / Estimate Request</h2>
+  <form action="https://formsubmit.co/zachschur@gmail.com" method="POST" oninput="updateTotal()">
+    <input type="hidden" name="_subject" value="LY Order Form Submission">
+    <label>Name</label>
+    <input type="text" name="name" required>
+    <label>Email</label>
+    <input type="email" name="email" required>
+    <label>Phone</label>
+    <input type="tel" name="phone">
+
+    <div class="order-inputs">
+      <div>
+        <label for="typeSelect">Type of Meat</label>
+        <select id="typeSelect" onchange="populateMainCuts()">
+          <option value="">Select...</option>
+        </select>
+      </div>
+      <div>
+        <label for="cutSelect">Cut</label>
+        <select id="cutSelect">
+          <option value="">Select type first</option>
+        </select>
+      </div>
+      <div>
+        <label for="lbsInput">Approx. lbs</label>
+        <input type="number" id="lbsInput" min="0.1" step="0.1">
+      </div>
+      <div>
+        <label>&nbsp;</label>
+        <button type="button" onclick="addCutToList()">Add</button>
+      </div>
+    </div>
+
+    <div id="orders"></div>
+
+    <label>Additional Notes</label>
+    <textarea name="notes" rows="4"></textarea>
+
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_autoresponse" value="Thank you for your order request! We'll be in touch shortly.">
+
+    <div class="total-section">Estimated Total: $<span id="totalPrice">0.00</span></div>
+    <button type="submit">Submit</button>
+  </form>
+</main>
+<script>
+  const cuts = {
+  Beef: {
+    "Skirt Steak": 34.99, "Hangers": 34.99, "1st Cut Club Steak": 14.99, "beef kolichel": 14.99, "Beef Feet": 16.99,
+    "1st Cut Club Steak Solomons": 18.99, "Eye Fillet Family": 9.99, "French Roast": 16.99, "Brisket Solomons": 14.99,
+    "Shoulder Steak Family": 9.99, "London Broil": 10.29, "Minute Steak Whole": 10.99, "Minute Steak shishkebab": 14.49,
+    "Ribeye": 19.49, "boneless Ribeye": 18.49, "Beef Shin": 8.49, "Beef Chuck": 9.99, "Ground Beef Chuck Family": 8.99,
+    "Ground Beef Chuck": 9.49, "Ground Beef Extra Lean": 9.49, "Beef Stew": 11.49, "Beef Stir Fry": 12.49,
+    "Beef Flanken": 21.99, "Beef Tongue": 29.99, "Beef Tails": 19.99, "Beef Cheeks": 34.99, "Pepper Steak": 15.49
+  },
+  Chicken: {
+    "Whole 2/5": 4.99, "Whole 3lb or bigger": 4.29, "Cornish": 12, "Legs Family": 3.79, "Legs mesorah": 4.99,
+    "Thighs": 4.99, "Drums": 3.99, "Wings": 3.49, "Jumbo Wings": 4.49, "Cutlet Family": 7.99,
+    "Cutlet Small Package": 8.49, "Pargiot Family Baby chicken thighs boneless": 7.99,
+    "Pargiot small package": 8.49, "Liver": 6.99, "Bones": 2.99, "Tenders thin sliced": 10.99,
+    "Fingers": 11.49, "Neck": 5.49, "Ground": 7.49, "Cubed to tiny pieces Chicken": 13.99
+  },
+  Veal: {
+    "Shoulder Steak": 14.49, "Breast 1st Cut": 13.99, "Breast": 13.49, "Neck 2nd Cut": 13.49, "Ground": 13.99,
+    "Neck Bones (W/ Meat)": 10.99, "Bones (No Meat)": 9.00, "Small Cubed Veal": 19.99, "Veal Liver": 20.99,
+    "Spleen": 15.99, "Veal Minute Steak": 21.99, "Veal Shin Special order": 21.99, "Veal Chops": 24.99,
+    "Veal Skirt Steak Special order": 29.99, "Veal Tongue": 42.99, "Veal Cheeks": 42.99, "Veal Marrow Bones": 12.99
+  },
+  Lamb: {
+    "Whole Shoulder": 9.99, "Whole Lamb with baby lamb chops / Steaks": 15.99, "Steaks": 14.49,
+    "Neck & Shin": 9.99, "Lamb Fat": 5.00, "Ground Lamb": 14.99, "Rezegi Lamb": 16.99, "Shank Bones": 12.99
+  },
+  Turkey: {
+    "Thighs": 5.99, "Turkey Shwarma": 7.99, "Turkey Shwarma Family": 7.49, "Wings": 3.49,
+    "Drums": 4.49, "Drums Cut & Skin": 4.99, "Neck": 6.49, "Ground": 7.49, "Cubed to tiny pieces": 14.99
+  }
+};
+function populateMainCuts() {
+  const type = document.getElementById('typeSelect').value;
+  const cutSelect = document.getElementById('cutSelect');
+  cutSelect.innerHTML = '<option value="">Select...</option>';
+  if (type && cuts[type]) {
+    for (const cut in cuts[type]) {
+      const opt = document.createElement('option');
+      opt.value = cut;
+      opt.textContent = cut;
+      cutSelect.appendChild(opt);
+    }
+  }
+}
+
+function addCutToList() {
+  const type = document.getElementById('typeSelect').value;
+  const cut = document.getElementById('cutSelect').value;
+  const lbs = parseFloat(document.getElementById('lbsInput').value);
+  if (!type || !cut || !lbs || !cuts[type][cut]) return;
+  const pricePerLb = cuts[type][cut];
+  const subtotal = (pricePerLb * lbs).toFixed(2);
+
+  const row = document.createElement('div');
+  row.className = 'order-row';
+  row.innerHTML = `
+    <div><input type="text" readonly name="type[]" value="${type}"></div>
+    <div><input type="text" readonly name="cut[]" value="${cut}"></div>
+    <div><input type="number" name="lbs[]" value="${lbs}" step="0.1" min="0.1" onchange="updateTotal()"></div>
+    <div class="price-display">$${subtotal}</div>
+    <button type="button" class="remove-btn" onclick="removeRow(this)">Remove</button>
+  `;
+  document.getElementById('orders').appendChild(row);
+  updateTotal();
+  document.getElementById('lbsInput').value = '';
+}
+
+function removeRow(btn) {
+  const row = btn.closest('.order-row');
+  row.remove();
+  updateTotal();
+}
+
+function updateTotal() {
+  let total = 0;
+  document.querySelectorAll('.order-row').forEach(row => {
+    const lbsInput = row.querySelector('input[name="lbs[]"]');
+    const lbs = parseFloat(lbsInput.value) || 0;
+    const type = row.querySelector('input[name="type[]"]').value;
+    const cut = row.querySelector('input[name="cut[]"]').value;
+    if (type && cut && cuts[type] && cuts[type][cut]) {
+      const price = cuts[type][cut];
+      const rowPrice = (price * lbs).toFixed(2);
+      row.querySelector('.price-display').textContent = `$${rowPrice}`;
+      total += parseFloat(rowPrice);
+    }
+  });
+  document.getElementById('totalPrice').textContent = total.toFixed(2);
+}
+
+// Populate meat types initially
+Object.keys(cuts).forEach(type => {
+  const opt = document.createElement('option');
+  opt.value = type;
+  opt.textContent = type;
+  document.getElementById('typeSelect').appendChild(opt);
+});
+</script>
+</body>
+</html>

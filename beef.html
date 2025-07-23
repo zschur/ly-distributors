@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beef - LY Distributors</title>
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #f6f9f4; margin: 0; padding: 0; }
+    header { background-color: #4d7754; color: #fff; padding: 1rem; text-align: center; }
+    nav { background-color: #6a8f6d; display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; padding: .75rem; }
+    nav a { color: #fff; text-decoration: none; font-weight: bold; font-size: .95rem; }
+    main { padding: 1rem; }
+    h2 { text-align: center; }
+
+    /* GRID 3–6 responsive */
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap: 1rem; }
+    @media (min-width:768px){ .product-grid{ grid-template-columns:repeat(3,1fr);} }
+    @media (min-width:1200px){ .product-grid{ grid-template-columns:repeat(6,1fr);} }
+
+    /* CARD */
+    .product{ background:#fff; border-radius:8px; padding:.75rem; padding-bottom:1.25rem; text-align:center; box-shadow:0 2px 4px rgba(0,0,0,.1); display:flex; flex-direction:column; align-items:center; justify-content:flex-start; }
+    .product img{ display:block; margin:0 auto .25rem auto; width:auto; max-width:100%; max-height:160px; border-radius:4px; object-fit:contain; aspect-ratio:1/1; }
+    .product-info{ font-size:1.1rem; }
+    .product-info strong{ display:block; font-size:1.2rem; font-weight:700; margin-bottom:.2rem; }
+  </style>
+</head>
+<body>
+  <header><h1>LY Distributors</h1></header>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="beef.html">Beef</a>
+    <a href="chicken.html">Chicken</a>
+    <a href="veal.html">Veal</a>
+    <a href="lamb.html">Lamb</a>
+    <a href="turkey.html">Turkey</a>
+    <a href="contact.html">Contact Us</a>
+  </nav>
+
+  <main>
+    <h2>Kosher Beef Cuts</h2>
+    <div class="product-grid">
+      <script>
+        const products=[
+          ["Beef Skirt Steak",34.99,"https://tse2.mm.bing.net/th/id/OIP.klu0xnTJQsJQFg6lIy1rCAHaE4?pid=Api"],
+          ["Beef Hangers",34.99,"https://tse2.mm.bing.net/th/id/OIP.klu0xnTJQsJQFg6lIy1rCAHaE4?pid=Api"],
+          ["1st Cut Club Steak",14.99,"https://tse2.mm.bing.net/th/id/OIP.klu0xnTJQsJQFg6lIy1rCAHaE4?pid=Api"],
+          ["Beef Kolichel",14.99,"https://tse2.mm.bing.net/th/id/OIP.klu0xnTJQsJQFg6lIy1rCAHaE4?pid=Api"],
+          ["Beef Feet",16.99,"https://tse2.mm.bing.net/th/id/OIP.klu0xnTJQsJQFg6lIy1rCAHaE4?pid=Api"],
+          ["1st Cut Club Steak Solomons",18.99,"https://tse2.mm.bing.net/th/id/OIP.klu0xnTJQsJQFg6lIy1rCAHaE4?pid=Api"],
+          ["Eye Fillet Family",9.99,"https://tse2.mm.bing.net/th/id/OIP.klu0xnTJQsJQFg6lIy1rCAHaE4?pid=Api"],
+          ["French Roast",16.99,"https://tse2.mm.bing.net/th/id/OIP.klu0xnTJQsJQFg6lIy1rCAHaE4?pid=Api"],
+          ["Brisket Solomons",14.99,"https://tse2.mm.bing.net/th/id/OIP.klu0xnTJQsJQFg6lIy1rCAHaE4?pid=Api"],
+          ["Shoulder Steak Family",9.99,"https://tse2.mm.bing.net/th/id/OIP.klu0xnTJQsJQFg6lIy1rCAHaE4?pid=Api"],
+          ["London Broil",10.29,"https://tse2.mm.bing.net/th/id/OIP.klu0xnTJQsJQFg6lIy1rCAHaE4?pid=Api"],
+          ["Minute Steak Whole",10.99,"https://tse2.mm.bing.net/th/id/OIP.klu0xnTJQsJQFg6lIy1rCAHaE4?pid=Api"],
+          ["Minute Steak Shishkebab",14.49,"https://tse2.mm.bing.net/th/id/OIP.klu0xnTJQsJQFg6lIy1rCAHaE4?pid=Api"],
+          ["Ribeye",19.49,"https://tse2.mm.bing.net/th/id/OIP.klu0xnTJQsJQFg6lIy1rCAHaE4?pid=Api"],
+          ["Boneless Ribeye",18.49,"https://tse2.mm.bing.net/th/id/OIP.klu0xnTJQsJQFg6lIy1rCAHaE4?pid=Api"],
+          ["Beef Shin",8.49,"https://tse2.mm.bing.net/th/id/OIP.klu0xnTJQsJQFg6lIy1rCAHaE4?pid=Api"],
+          ["Beef Chuck",9.99,"https://tse2.mm.bing.net/th/id/OIP.klu0xnTJQsJQFg6lIy1rCAHaE4?pid=Api"],
+          ["Ground Beef Chuck Family",8.99,"https://tse2.mm.bing.net/th/id/OIP.klu0xnTJQsJQFg6lIy1rCAHaE4?pid=Api"],
+          ["Ground Beef Chuck",9.49,"https://tse2.mm.bing.net/th/id/OIP.klu0xnTJQsJQFg6lIy1rCAHaE4?pid=Api"],
+          ["Ground Beef Extra Lean",9.49,"https://tse2.mm.bing.net/th/id/OIP.klu0xnTJQsJQFg6lIy1rCAHaE4?pid=Api"],
+          ["Beef Stew",11.49,"https://tse2.mm.bing.net/th/id/OIP.klu0xnTJQsJQFg6lIy1rCAHaE4?pid=Api"],
+          ["Beef Stir Fry",12.49,"https://tse2.mm.bing.net/th/id/OIP.klu0xnTJQsJQFg6lIy1rCAHaE4?pid=Api"],
+          ["Beef Flanken",21.99,"https://tse2.mm.bing.net/th/id/OIP.klu0xnTJQsJQFg6lIy1rCAHaE4?pid=Api"],
+          ["Beef Tongue",29.99,"https://tse2.mm.bing.net/th/id/OIP.klu0xnTJQsJQFg6lIy1rCAHaE4?pid=Api"],
+          ["Beef Tails",19.99,"https://tse2.mm.bing.net/th/id/OIP.klu0xnTJQsJQFg6lIy1rCAHaE4?pid=Api"],
+          ["Beef Cheeks",34.99,"https://tse2.mm.bing.net/th/id/OIP.klu0xnTJQsJQFg6lIy1rCAHaE4?pid=Api"],
+          ["Pepper Steak",15.49,"https://tse2.mm.bing.net/th/id/OIP.klu0xnTJQsJQFg6lIy1rCAHaE4?pid=Api"]
+        ];
+
+        window.addEventListener('DOMContentLoaded',()=>{
+          const container=document.querySelector('.product-grid');
+          products.forEach(([name,price,img])=>{
+            const card=document.createElement('div');
+            card.className='product';
+            card.innerHTML=`<img src="${img}" alt="${name}"><div class='product-info'><strong>${name}</strong>$${price.toFixed(2)}/lb</div>`;
+            container.appendChild(card);
+          });
+        });
+      </script>
+    </div>
+  </main>
+</body>
+</html>
