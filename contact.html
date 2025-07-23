@@ -172,11 +172,14 @@ function updateTotal() {
   document.getElementById('estimatedTotal').value = `$${total.toFixed(2)}`;
 }
 
-Object.keys(cuts).forEach(type => {
-  const opt = document.createElement('option');
-  opt.value = type;
-  opt.textContent = type;
-  document.getElementById('typeSelect').appendChild(opt);
+document.addEventListener('DOMContentLoaded', () => {
+  const typeSelect = document.getElementById('typeSelect');
+  Object.keys(cuts).forEach(type => {
+    const opt = document.createElement('option');
+    opt.value = type;
+    opt.textContent = type;
+    typeSelect.appendChild(opt);
+  });
 });
 </script>
 </body>
