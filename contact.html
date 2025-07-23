@@ -66,6 +66,37 @@
   </form>
 </main>
 <script>
+  const cuts = {
+  Beef: {
+    "Skirt Steak": 34.99, "Hangers": 34.99, "1st Cut Club Steak": 14.99, "beef kolichel": 14.99, "Beef Feet": 16.99,
+    "1st Cut Club Steak Solomons": 18.99, "Eye Fillet Family": 9.99, "French Roast": 16.99, "Brisket Solomons": 14.99,
+    "Shoulder Steak Family": 9.99, "London Broil": 10.29, "Minute Steak Whole": 10.99, "Minute Steak shishkebab": 14.49,
+    "Ribeye": 19.49, "boneless Ribeye": 18.49, "Beef Shin": 8.49, "Beef Chuck": 9.99, "Ground Beef Chuck Family": 8.99,
+    "Ground Beef Chuck": 9.49, "Ground Beef Extra Lean": 9.49, "Beef Stew": 11.49, "Beef Stir Fry": 12.49,
+    "Beef Flanken": 21.99, "Beef Tongue": 29.99, "Beef Tails": 19.99, "Beef Cheeks": 34.99, "Pepper Steak": 15.49
+  },
+  Chicken: {
+    "Whole 2/5": 4.99, "Whole 3lb or bigger": 4.29, "Cornish": 12, "Legs Family": 3.79, "Legs mesorah": 4.99,
+    "Thighs": 4.99, "Drums": 3.99, "Wings": 3.49, "Jumbo Wings": 4.49, "Cutlet Family": 7.99,
+    "Cutlet Small Package": 8.49, "Pargiot Family Baby chicken thighs boneless": 7.99,
+    "Pargiot small package": 8.49, "Liver": 6.99, "Bones": 2.99, "Tenders thin sliced": 10.99,
+    "Fingers": 11.49, "Neck": 5.49, "Ground": 7.49, "Cubed to tiny pieces Chicken": 13.99
+  },
+  Veal: {
+    "Shoulder Steak": 14.49, "Breast 1st Cut": 13.99, "Breast": 13.49, "Neck 2nd Cut": 13.49, "Ground": 13.99,
+    "Neck Bones (W/ Meat)": 10.99, "Bones (No Meat)": 9.00, "Small Cubed Veal": 19.99, "Veal Liver": 20.99,
+    "Spleen": 15.99, "Veal Minute Steak": 21.99, "Veal Shin Special order": 21.99, "Veal Chops": 24.99,
+    "Veal Skirt Steak Special order": 29.99, "Veal Tongue": 42.99, "Veal Cheeks": 42.99, "Veal Marrow Bones": 12.99
+  },
+  Lamb: {
+    "Whole Shoulder": 9.99, "Whole Lamb with baby lamb chops / Steaks": 15.99, "Steaks": 14.49,
+    "Neck & Shin": 9.99, "Lamb Fat": 5.00, "Ground Lamb": 14.99, "Rezegi Lamb": 16.99, "Shank Bones": 12.99
+  },
+  Turkey: {
+    "Thighs": 5.99, "Turkey Shwarma": 7.99, "Turkey Shwarma Family": 7.49, "Wings": 3.49,
+    "Drums": 4.49, "Drums Cut & Skin": 4.99, "Neck": 6.49, "Ground": 7.49, "Cubed to tiny pieces": 14.99
+  }
+};
 function populateMainCuts() {
   const type = document.getElementById('typeSelect').value;
   const cutSelect = document.getElementById('cutSelect');
