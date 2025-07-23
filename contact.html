@@ -53,6 +53,7 @@
 
     <div id="orders"></div>
     <textarea name="Order Summary" id="orderSummary" hidden></textarea>
+    <input type="hidden" name="Estimated Total" id="estimatedTotal">
 
     <label>Additional Notes</label>
     <textarea name="notes" rows="4"></textarea>
@@ -109,23 +110,35 @@ function removeRow(btn) {
 
 function updateTotal() {
   let total = 0;
-  let summary = "Order Summary:\n\n";
-  document.querySelectorAll('.order-row').forEach((row, index) => {
+  const cutsMap = new Map();
+  document.querySelectorAll('.order-row').forEach((row) => {
     const lbsInput = row.querySelector('input[name="lbs[]"]');
     const lbs = parseFloat(lbsInput.value) || 0;
     const type = row.querySelector('input[name="type[]"]').value;
     const cut = row.querySelector('input[name="cut[]"]').value;
     if (type && cut && cuts[type] && cuts[type][cut]) {
       const price = cuts[type][cut];
-      const rowPrice = (price * lbs).toFixed(2);
-      row.querySelector('.price-display').textContent = `$${rowPrice}`;
-      total += parseFloat(rowPrice);
-      summary += `${index + 1}. ${type} - ${cut} : ${lbs} lbs ($${rowPrice})\n`;
+      const rowPrice = (price * lbs);
+      row.querySelector('.price-display').textContent = `$${rowPrice.toFixed(2)}`;
+      total += rowPrice;
+      const key = `${type} - ${cut}`;
+      if (!cutsMap.has(key)) {
+        cutsMap.set(key, { totalLbs: 0, totalPrice: 0 });
+      }
+      cutsMap.get(key).totalLbs += lbs;
+      cutsMap.get(key).totalPrice += rowPrice;
     }
   });
+
+  let summary = "Order Summary:\n\n";
+  Array.from(cutsMap.entries()).forEach(([cut, data], index) => {
+    summary += `${index + 1}. ${cut}: ${data.totalLbs.toFixed(1)} lbs ($${data.totalPrice.toFixed(2)})\n`;
+  });
+
   summary += `\nEstimated Total: $${total.toFixed(2)}`;
   document.getElementById('totalPrice').textContent = total.toFixed(2);
   document.getElementById('orderSummary').value = summary;
+  document.getElementById('estimatedTotal').value = `$${total.toFixed(2)}`;
 }
 
 Object.keys(cuts).forEach(type => {
